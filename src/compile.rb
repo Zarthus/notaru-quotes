@@ -14,7 +14,10 @@ def compile_quotes_file(html_tpl, yaml_file)
   output = ''
 
   yml.each do |quote|
-      escapedQuote = quote["quote"].gsub(/(?<! \|\|) (<[^ >]+>) /, " || \\1 ")
+
+    escapedQuote = quote["quote"]
+        .gsub(/[\[\(]*[\d+:]+[\]\)]* (<[^ >]+>)/, ' \1')  # remove timestamps
+        .gsub(/(?<! \|\|) (<[^ >]+>) /, ' || \1 ') # Prepend || to nicks
     escapedQuote = CGI.escapeHTML(escapedQuote)
         .gsub("||", "<br>")  # we often use two pipes to denote a newline in quotes.
 
