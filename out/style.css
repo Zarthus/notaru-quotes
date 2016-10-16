@@ -27,11 +27,22 @@
 
 .quote-header {
   padding: 10px 15px;
+  padding-bottom: 25px;
   border-bottom: 1px solid #ccc;
   background-color: #f5f5f5;
 }
 
+  .quote-header > .quote-header-left {
+    float: left;
+  }
+
+  .quote-header > .quote-header-right {
+    float: right;
+    text-align: right;
+  }
+
 .quote-body {
+  clear: both;
   padding: 2px 15px;
 }
 
@@ -46,6 +57,22 @@
 
   .quote-time {
   }
+
+.quote-collapsed {
+  opacity: 0.40;
+}
+
+.quote-header > .quote-header-right > .btn-hide {
+  content: "hide";
+}
+
+.quote-collapsed > .quote-header > .quote-header-right > .btn-hide {
+  content: "show";
+}
+
+.quote-collapsed > .quote-body {
+  display: none;
+}
 
 #footer {
   margin-top: 10px;

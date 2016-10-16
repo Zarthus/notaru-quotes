@@ -16,12 +16,10 @@ def compile_quotes_file(html_tpl, yaml_file)
   yml.each do |quote|
     output << template.gsub("{{ id }}", quote["id"].to_s)
         .gsub("{{ quote }}", CGI.escapeHTML(quote["quote"]).gsub("||", "<br>"))
-        .gsub("{{ adder }}", quote["added_by"])
+        .gsub("{{ adder }}", quote["added_by"].gsub('_', ' '))
         .gsub("{{ time }}", quote["created_at"].iso8601)
         .gsub("{{ deleted }}", (quote["deleted"] ? "true" : "false"))
         .gsub("{{ class-deleted }}", (quote["deleted"] ? "quote-status-deleted" : "quote-status-active"))
-        .gsub("\n", "")
-    output << "\n"
   end
 
   output
