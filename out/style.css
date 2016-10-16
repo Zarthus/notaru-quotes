@@ -1,0 +1,27 @@
+/* Stylesheet for quotes */
+
+/* The entire quotes area. */
+#quotes {
+  font-family: monospace;
+  width: 90vw;
+  margin: 0 auto;
+}
+
+/* One class per quote. */
+.quote {
+
+}
+
+  .quote-id {
+  }
+
+  .quote-text {
+  }
+
+  .quote-adder {
+  }
+
+  .quote-time {
+  }
+
+
