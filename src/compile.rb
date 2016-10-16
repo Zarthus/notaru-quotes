@@ -10,15 +10,16 @@ HTML_TPL_Q = File.join(__dir__, "../res", "quote-tpl.html")
 
 def compile_quotes_file(html_tpl, yaml_file)
   template = File.open(html_tpl).readlines().join("\n")
-  yml = YAML.load(File.open(yaml_file))
+  yml = YAML.load(File.open(yaml_file)).reverse()
   output = ''
 
   yml.each do |quote|
     output << template.gsub("{{ id }}", quote["id"].to_s)
-        .sub("{{ quote }}", CGI.escapeHTML(quote["quote"]).gsub("||", "<br>"))
-        .sub("{{ adder }}", quote["added_by"])
-        .sub("{{ time }}", quote["created_at"].iso8601)
-        .sub("{{ deleted }}", (quote["deleted"] ? "true" : "false"))
+        .gsub("{{ quote }}", CGI.escapeHTML(quote["quote"]).gsub("||", "<br>"))
+        .gsub("{{ adder }}", quote["added_by"])
+        .gsub("{{ time }}", quote["created_at"].iso8601)
+        .gsub("{{ deleted }}", (quote["deleted"] ? "true" : "false"))
+        .gsub("{{ class-deleted }}", (quote["deleted"] ? "quote-status-deleted" : "quote-status-active"))
         .gsub("\n", "")
     output << "\n"
   end

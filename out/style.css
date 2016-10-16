@@ -21,6 +21,10 @@
   box-shadow: -1px 1px 15px -5px rgba(0,0,0,0.75);
 }
 
+  .quote-wrapper.quote-status-deleted {
+    opacity: 0.25;
+  }
+
 .quote-header {
   padding: 10px 15px;
   border-bottom: 1px solid #ccc;
