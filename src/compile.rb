@@ -8,7 +8,7 @@ IN = File.join(__dir__, "../out", "quotes.yml")
 HTML_TPL = File.join(__dir__, "../res", "template.html")
 HTML_TPL_Q = File.join(__dir__, "../res", "quote-tpl.html")
 
-def compile_quotes_file(html_tpl, yaml_file)
+def compile_quotes_file(html_tpl, yaml_file, indentation_level=0)
   template = File.read(html_tpl)
   yml = YAML.load(File.open(yaml_file)).reverse()
   output = ''
@@ -33,6 +33,7 @@ def compile_quotes_file(html_tpl, yaml_file)
 
   end
 
+  output = output.split("\n").map{|l|'    ' * indentation_level << l}.join("\n") if (indentation_level > 0)
   output
 end
 
