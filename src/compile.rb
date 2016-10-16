@@ -14,12 +14,18 @@ def compile_quotes_file(html_tpl, yaml_file)
   output = ''
 
   yml.each do |quote|
+      escapedQuote = quote["quote"].gsub(/(?<! \|\|) (<[^ >]+>) /, " || \\1 ")
+    escapedQuote = CGI.escapeHTML(escapedQuote)
+        .gsub("||", "<br>")  # we often use two pipes to denote a newline in quotes.
+
+
     output << template.gsub("{{ id }}", quote["id"].to_s)
-        .gsub("{{ quote }}", CGI.escapeHTML(quote["quote"]).gsub("||", "<br>"))
+        .gsub("{{ quote }}", escapedQuote)
         .gsub("{{ adder }}", quote["added_by"].gsub('_', ' '))
         .gsub("{{ time }}", quote["created_at"].iso8601)
         .gsub("{{ deleted }}", (quote["deleted"] ? "true" : "false"))
         .gsub("{{ class-deleted }}", (quote["deleted"] ? "quote-status-deleted" : "quote-status-active"))
+
   end
 
   output
