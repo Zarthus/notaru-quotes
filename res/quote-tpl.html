@@ -1,16 +1,19 @@
-<div class="quote-wrapper {{ class-deleted }}" id="quote-id-{{ id }}" data-quote-id="{{ id }}" data-quote-deleted="{{ deleted }}">
-    <div class="quote-header">
-        <div class="quote-header-left">
+<article class="quote-wrapper {{ class-deleted }}" id="quote-id-{{ id }}" data-quote-id="{{ id }}" data-quote-deleted="{{ deleted }}">
+    <header>
+        <div class="left">
             <span class="quote-id" data-quote-id="{{ id }}"><a href="#quote-id-{{ id }}">{{ id }}</a></span>
-            &mdash;
-            <span class="quote-adder">{{ adder }}</span>
         </div>
-        <div class="quote-header-right">
+        <div class="right">
             <a class="btn-hide" href="javascript:quote_toggle_shown({{ id }})">hide</a>
         </div>
-    </div>
+    </header>
     <div class="quote-body">
-        <p><span class="quote-text">{{ quote }}</span></p>
-        <p>Added on <time class="quote-time" datetime="{{ time }}">{{ time_human }}</time></p>
+      <p class="quote-text">{{ quote }}</p>
     </div>
-</div>
+    <footer>
+      <p>
+        Added on <time class="quote-time" datetime="{{ time }}">{{ time_human }}</time>
+        by <span class="quote-adder">{{ adder }}</span>
+      </p>
+    </footer>
+</article>
