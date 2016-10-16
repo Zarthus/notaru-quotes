@@ -8,32 +8,30 @@ IN = File.join(__dir__, "../out", "quotes.yml")
 HTML_TPL = File.join(__dir__, "../res", "template.html")
 HTML_TPL_Q = File.join(__dir__, "../res", "quote-tpl.html")
 
-def compile_quotes_file(html_tpl, yaml_file, indentation_level=0)
+def compile_quotes_file(html_tpl, yaml_file, indentation_level = 0)
   template = File.read(html_tpl)
   yml = YAML.load(File.open(yaml_file)).reverse()
   output = ''
 
   yml.each do |quote|
-
     escapedQuote = quote["quote"]
         .gsub(/[\[\(]*[\d+:]{2,}[\]\)]* (<[^ >]+>)/, '\1')  # remove timestamps
         .gsub(/(?<! \|\|) (<[^ >]+>) /, ' || \1 ') # Prepend || to nicks
     escapedQuote = CGI.escapeHTML(escapedQuote)
         .gsub("||", "<br>")  # we often use two pipes to denote a newline in quotes.
 
-
     output << template.gsub("{{ id }}", quote["id"].to_s)
         .gsub("{{ quote }}", escapedQuote)
-        .gsub("{{ adder }}", quote["added_by"].gsub('_', ' '))
+        .gsub("{{ author }}", quote["added_by"].gsub('_', ' '))
         .gsub("{{ time_human }}", quote["created_at"].utc.strftime("%A, %d %B %Y %T %Z"))
         .gsub("{{ time }}", quote["created_at"].iso8601)
         .gsub("{{ deleted }}", (quote["deleted"] ? "true" : "false"))
-        .gsub("{{ class-deleted }}", (quote["deleted"] ? "quote-status-deleted" : "quote-status-active"))
+        .gsub("{{ class_deleted }}", (quote["deleted"] ? "quote-status-deleted" : "quote-status-active"))
         .gsub(/\x02(.*?)(\x02|\x0F|$)/,'<b>\1</b>')
 
   end
 
-  output = output.split("\n").map{|l|'    ' * indentation_level << l}.join("\n") if (indentation_level > 0)
+  output = output.split("\n").map { |l| '    ' * indentation_level << l }.join("\n") if (indentation_level > 0)
   output
 end
 
