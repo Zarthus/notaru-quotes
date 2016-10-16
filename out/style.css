@@ -1,4 +1,6 @@
-/* Stylesheet for quotes */
+/* Stylesheet for quotes
+ * This mimics bootstraps' page headers.
+ * see getbootstrap.com/components/#page-header */
 
 /* The entire quotes area. */
 #quotes {
@@ -8,8 +10,25 @@
 }
 
 /* One class per quote. */
-.quote {
+.quote-wrapper {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  width: 50vw;
+  margin: 10px;
 
+  -webkit-box-shadow: -1px 1px 15px -5px rgba(0,0,0,0.75);
+  -moz-box-shadow: -1px 1px 15px -5px rgba(0,0,0,0.75);
+  box-shadow: -1px 1px 15px -5px rgba(0,0,0,0.75);
+}
+
+.quote-header {
+  padding: 10px 15px;
+  border-bottom: 1px solid #ccc;
+  background-color: #f5f5f5;
+}
+
+.quote-body {
+  padding: 2px 15px;
 }
 
   .quote-id {
@@ -24,4 +43,7 @@
   .quote-time {
   }
 
-
+#footer {
+  margin-top: 10px;
+  text-align: center;
+}

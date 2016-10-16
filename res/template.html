@@ -5,9 +5,18 @@
         <link rel="stylesheet" type="text/css" href="/quotes/style.css">
     </head>
     <body>
-        <h1>Notaru Quote DB</h1> [<a href="/quotes/quotes.yml">source file</a>]
+        <h1>Notaru Quote DB</h1>
         <div id="quotes">
-          {{ include template }}
+            {{ include template }}
+        </div>
+        <div id="footer">
+            <p>
+                {{ compile info }}
+            </p>
+            <p>
+                <a href="https://github.com/Zarthus/notaru-quotes">source code</a> &middot;
+                <a href="/quotes/quotes.yml">source quotes</a>
+            </p>
         </div>
     </body>
 </html>

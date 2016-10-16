@@ -1,1 +1,11 @@
-<div class="quote"><span class="quote-id" data-quote-id="{{ id }}">{{ id }}</span>: <span class="quote-text">{{ quote }}</span> - <span class="adder">{{ adder }}</span></div>
+<div class="quote-wrapper" id="quote-id-{{ id }}">
+    <div class="quote-header">
+        <span class="quote-id" data-quote-id="{{ id }}"><a href="#quote-id-{{ id }}">{{ id }}</a></span>
+        &mdash;
+        <span class="quote-adder">{{ adder }}</span>
+    </div>
+    <div class="quote-body">
+        <p><span class="quote-text">{{ quote }}</span></p>
+        <p>Added on <span class="quote-time">{{ time }}</span></p>
+    </div>
+</div>
