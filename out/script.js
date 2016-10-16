@@ -4,6 +4,29 @@
     var elem = delElems[i];
     quoteToggleShown(elem.dataset['quoteId']);
   }
+
+  var listeners = {
+    "author": '',
+    "search": '',
+    "quotes": '',
+    "quote": ''
+  };
+  var keys = Object.keys(listeners);
+
+  var getRequest = window.location.search.replace("?", "").split("&");
+  for (var i = 0; i < getRequest.length; i++) {
+    var item = getRequest[i];
+    var key, value, split;
+    split = item.split("=");
+    key = split[0];
+    value = split[1];
+    for (var x = 0, k = keys[x]; x < keys.length; x++) {
+      if (k == key) {
+        listeners[k] = decodeURIComponent(value);
+      }
+    }
+  }
+  handleGetRequest(listeners);
 })();
 
 function quoteToggleShown(quoteId, quoteClassName) {
@@ -23,4 +46,32 @@ function quoteToggleShown(quoteId, quoteClassName) {
     elem.className += ' ' + quoteClassName;
     elem.getElementsByClassName('btn-hide')[0].text = 'show';
   }
+}
+
+function handleGetRequest(query) {
+  if (query["author"] != '') {
+    showAllByAuthor(query["author"]);
+  }
+
+  if (query["search"] != '') {
+    showAllThatMatchSearch(query["search"]);
+  }
+
+  if (query["quotes"] != '') {
+    showAllQuotesByIds(query["quotes"].replace(' ', '').split(','));
+  } else if (query["quote"] != '') {
+    showAllQuotesByIds([query["quote"]]);
+  }
+}
+
+function showAllByAuthor(author) {
+
+}
+
+function showAllThatMatchSearch(search) {
+
+}
+
+function showAllQuotesByIds(quoteIds) {
+
 }
