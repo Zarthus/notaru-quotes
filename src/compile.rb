@@ -9,7 +9,7 @@ HTML_TPL = File.join(__dir__, "../res", "template.html")
 HTML_TPL_Q = File.join(__dir__, "../res", "quote-tpl.html")
 
 def compile_quotes_file(html_tpl, yaml_file)
-  template = File.open(html_tpl).readlines().join("\n")
+  template = File.read(html_tpl)
   yml = YAML.load(File.open(yaml_file)).reverse()
   output = ''
 
