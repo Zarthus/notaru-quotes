@@ -2,22 +2,25 @@
   var delElems = document.getElementsByClassName('quote-status-deleted');
   for (var i = 0; i < delElems.length; i++) {
     var elem = delElems[i];
-    quote_toggle_shown(elem.dataset['quoteId']);
+    quoteToggleShown(elem.dataset['quoteId']);
   }
 })();
 
-function quote_toggle_shown(quote_id) {
-  var elem = document.getElementById('quote-id-' + quote_id);
+function quoteToggleShown(quoteId, quoteClassName) {
+  /* quote-collapsed = still available, quote-hidden = invisible */
+  quoteClassName = quoteClassName || 'quote-collapsed';
+
+  var elem = document.getElementById('quote-id-' + quoteId);
 
   if (elem == null) {
-    throw Error('Quote with ID ' + quote_id + ' does not exist.');
+    throw Error('Quote with ID ' + quoteId + ' does not exist.');
   }
 
-  if (elem.className.indexOf('quote-collapsed') !== -1) {
-    elem.className = elem.className.replace('quote-collapsed', '')
+  if (elem.className.indexOf(quoteClassName) !== -1) {
+    elem.className = elem.className.replace(quoteClassName, '')
     elem.getElementsByClassName('btn-hide')[0].text = 'hide';
   } else {
-    elem.className += ' quote-collapsed';
+    elem.className += ' ' + quoteClassName;
     elem.getElementsByClassName('btn-hide')[0].text = 'show';
   }
 }

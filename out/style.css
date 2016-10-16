@@ -68,6 +68,10 @@
   .quote-time {
   }
 
+.quote-hidden {
+  display: none;
+}
+
 .quote-collapsed {
   opacity: 0.40;
 }
