@@ -62,14 +62,6 @@
   opacity: 0.40;
 }
 
-.quote-header > .quote-header-right > .btn-hide {
-  content: "hide";
-}
-
-.quote-collapsed > .quote-header > .quote-header-right > .btn-hide {
-  content: "show";
-}
-
 .quote-collapsed > .quote-body {
   display: none;
 }
