@@ -27,6 +27,7 @@ def compile_quotes_file(html_tpl, yaml_file, indentation_level = 0)
         .gsub("{{ time }}", quote["created_at"].iso8601)
         .gsub("{{ deleted }}", (quote["deleted"] ? "true" : "false"))
         .gsub("{{ class_deleted }}", (quote["deleted"] ? "quote-status-deleted" : "quote-status-active"))
+        .gsub(/(https?:\/\/[^ ]+)/, '<a href="\1">\1</a>')
         .gsub(/\x02(.*?)(\x02|\x0F|$)/,'<b>\1</b>')
 
   end
