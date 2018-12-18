@@ -30,6 +30,19 @@
   handleGetRequest(listeners);
 })();
 
+
+(function() {
+  const buttons = document.getElementsByClassName('btn-hide');
+  const fnOnButtonClick = function() {
+    const quoteId = this.parentElement.parentElement.parentElement.dataset['quoteId'];
+    quoteToggleShown(parseInt(quoteId));
+  };
+
+  for (let btn of buttons) {
+    btn.addEventListener('click', fnOnButtonClick);
+  }
+})();
+
 function quoteToggleShown(quoteId, quoteClassName, forceHide) {
   /* quote-collapsed = still available, quote-hidden = invisible */
   quoteClassName = quoteClassName || 'quote-collapsed';
@@ -48,10 +61,10 @@ function quoteToggleShown(quoteId, quoteClassName, forceHide) {
 
   if (!forceHide && elem.className.indexOf(quoteClassName) !== -1) {
     elem.className = elem.className.replace(quoteClassName, '')
-    elem.getElementsByClassName('btn-hide')[0].text = 'hide';
+    elem.getElementsByClassName('btn-hide')[0].innerText = 'hide';
   } else {
     elem.className += ' ' + quoteClassName;
-    elem.getElementsByClassName('btn-hide')[0].text = 'show';
+    elem.getElementsByClassName('btn-hide')[0].innerText = 'show';
   }
 }
 
